@@ -2,7 +2,7 @@ N, M, D = map(int, input().split())
 field = []
 wave_end = []
 result = []
-maxi = 99999999
+maxi = 999999999
 s_total = 0
 
 for i in range(N):
@@ -25,6 +25,8 @@ for x in range(M):
 				if (pointer_x < 0):
 					pointer_x += 1
 					pointer_y -= 1
+					continue
+				if (pointer_x >= M):
 					continue
 				if (wave_end[x][pointer_y][pointer_x] == 1):
 					wave_end[x][pointer_y][pointer_x] = 0
