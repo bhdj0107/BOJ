@@ -28,7 +28,7 @@ for x in range(M):
 					continue
 				if (pointer_x >= M):
 					continue
-				if (wave_end[x][pointer_y][pointer_x] == 1):
+				if (pointer_y >= 0 and wave_end[x][pointer_y][pointer_x] == 1):
 					wave_end[x][pointer_y][pointer_x] = 0
 					check = 1
 					break
