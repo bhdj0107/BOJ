@@ -6,7 +6,7 @@ const int MAX = 9;
 int d_exp[MAX];
 int list[MAX];
 int str[MAX] = { 0, };
-bool vst[MAX * MAX * MAX * MAX * MAX * MAX * MAX * MAX * MAX];
+bool vst[16777216];
 bool ch[MAX];
 int N, M;
 
@@ -31,7 +31,7 @@ void dfs(int D) {
 
 		// 아래 for문을 돌리게 되면, 중복 되는 경우는 서로 같은 temp 값을 갖는다.
 		for (int i = 0; i < M; i++) {
-			temp += (i + 1) * my_pow(8, d_exp[str[i]]);
+			temp += my_pow(8, i) * d_exp[str[i]];
 		}
 
 		// 이때 vst[temp] 값에 접근하여 true 가 아닐 경우, true로 바꾸어 중복 처리를 하고 출력한다. 
