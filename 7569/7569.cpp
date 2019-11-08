@@ -12,7 +12,6 @@ struct pos {
    int x;
    int y;
    int z;
-   int t;
 };
 
 queue<pos> q;
@@ -24,7 +23,8 @@ int main() {
          for (int k = 0; k < M; k++) {
             scanf("%d", &boxes[i][j][k]);
             if (boxes[i][j][k] == 1) {
-               q.push({ k, j, i, 1 });\
+               q.push({ k, j, i});
+               check[i][j][k] = 1;
             }
          }
       }
@@ -34,21 +34,21 @@ int main() {
       int tx = q.front().x;
       int ty = q.front().y;
       int tz = q.front().z;
-      int tt = q.front().t;
-      q.pop();
 
-      if (tx < 0 || ty < 0 || tz < 0)
-         continue;
-      if (tx >= M || ty >= N || tz >= H)
-         continue;
-      if (check[tz][ty][tx] != 0 || boxes[tz][ty][tx] == -1)
-         continue;
-      check[tz][ty][tx] = tt;
+      q.pop();
       for (int i = 0; i < 6; i++) {
          int nx = tx + dx[i];
          int ny = ty + dy[i];
          int nz = tz + dz[i];
-         q.push({ nx,ny,nz,tt + 1 });
+
+         if (nx < 0 || ny < 0 || nz < 0)
+            continue;
+         if (nx >= M || ny >= N || nz >= H)
+            continue;
+         if (check[nz][ny][nx] != 0 || boxes[nz][ny][nx] == -1)
+            continue;
+         check[nz][ny][nx] = check[tz][ty][tx] + 1;
+         q.push({ nx,ny,nz });
       }
    }
    int latest = 0;
