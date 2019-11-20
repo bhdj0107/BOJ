@@ -1,18 +1,14 @@
 import sys
 N, L, D = map(int, sys.stdin.readline().split())
 
-song = []
+end = L * N + 5 * (N - 1)
 
+i = D
+while i < end:
+    if i % (L + 5) - L >= 0:
+        print(i)
+        exit()
+    else:
+        i += D
 
-for _ in range(N):
-    for _ in range(L):
-        song.append(True)
-    for _ in range(5):
-        song.append(False)
-
-i = 0
-while 1:
-
-
-
-
+print(i)
