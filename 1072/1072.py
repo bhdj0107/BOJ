@@ -1,16 +1,21 @@
 import sys
 X, Y = map(int, sys.stdin.readline().split())
-Z = int(Y/X*100 + 1)
+Z = Y * 100 // X
 
-temp = 0
-if Z >= 100:
+Max = 1000000000
+Min = 0
+
+if Z >= 99:
     print(-1)
+    exit()
 else:
-    for digit in range(10):
-        for _ in range(10):
-            temp += (10 ** (9 - digit))
-            if int((Y+temp) / (X+temp) * 100) >= Z:
-                break
-        temp -= (10 ** (9 - digit))
+    while Min <= Max:
+        Mid = (Max + Min) // 2
+        temp = (Y+Mid) * 100 // (X+Mid)
+        if temp > Z:
+            Max = int(Mid) - 1
+            continue
+        else:
+            Min = int(Mid) + 1
 
-print(temp + 1)
+print(Min)
